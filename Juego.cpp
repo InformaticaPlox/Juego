@@ -16,6 +16,7 @@
 #include <iostream>
 #include <vector>
 #include "DataBase.h"
+#include "graficos.h"
 
 //#include <allegro.h>
 //#pragma comment(lib, "alleg.lib")
@@ -138,6 +139,7 @@ int Juego::Jugar(){
     Dibujador dib(4,5);
     vector <Laberinto> laberintos;
     DataBase data;
+
     /* Funciones:*/
     
     string* nombreArchivo=this->nombres_archivos();
@@ -158,19 +160,19 @@ int Juego::Jugar(){
     it=laberintos.begin();
     while(it!=laberintos.end()){
         this->laberintoActual=*it.base();
-        dib.Dibuja(heroe.GetPosX(),heroe.GetPosY(),this->laberintoActual.GetM(),this->laberintoActual.GetN(),this->laberintoActual.GetMatriz());
+    dib.Dibuja(heroe.GetPosX(),heroe.GetPosY(),this->laberintoActual.GetM(),this->laberintoActual.GetN(),this->laberintoActual);
         int cond=0;
-        cond=movimiento(heroe);
+        cond=this->movimiento(heroe);
         if(cond==ENTER_PRESIONADO){
-            cond=mostrar_menu();
+            cond=this->mostrar_menu();
             if(cond==1)
-                mostrar_equipo(heroe);
+                this->mostrar_equipo(heroe);
             else if(cond ==2)
-                mostrar_inventario(heroe);
+                this->mostrar_inventario(heroe);
             else if(cond==3)
                 continue;
             else{
-                int selc=mostrar_salir(heroe);
+                int selc=this->mostrar_salir(heroe);
                 if (selc==1) return 0; // sale del juego
             } 
         }

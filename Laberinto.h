@@ -17,6 +17,7 @@
 
 using namespace std;
 class DataBase;
+class Dibujador;
 class Laberinto {
 public:
     Laberinto();
@@ -49,6 +50,7 @@ public:
     Celda& operator()(int,int)const;
     void imprimir();
     friend DataBase;
+    friend Dibujador;
     
 private:
     int M;

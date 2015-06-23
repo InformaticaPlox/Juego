@@ -39,8 +39,8 @@ Laberinto GestorLaberinto::crearLaberinto(string escenario,int nivel,DataBase &d
         laberinto.SetNivelesArtefacto(nivel+1);
         laberinto.SetNivelesMonstruo(nivel+1);
         laberinto.SetMatriz(escenario_map);
-        laberinto.InicializarArtefacto(data);
-        laberinto.IncializarMonstruo(data);
+        //laberinto.InicializarArtefacto(data);
+        //laberinto.IncializarMonstruo(data);
     }
     return laberinto;
 }
