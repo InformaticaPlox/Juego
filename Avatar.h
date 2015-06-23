@@ -35,6 +35,7 @@ public:
     Armadura obtenarmadura() const;
     void recibeDanio(int danho);
     void disminuyeMana(int cantidad);
+    int obtenDanho(int i);
 private:
     Equipamiento equip;
     int manaActual;

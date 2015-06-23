@@ -116,3 +116,14 @@ void Avatar::disminuyeMana(int cantidad){
     mana = mana - cantidad;
     this->SetManaActual(mana);
 }
+
+int Avatar::obtenDanho(int i){
+    Arma arma = this->obtenArma();
+    Ataque atk;
+    if (i == 1)
+        atk = arma.GetAtaque1();
+    else
+        atk = arma.GetAtaque2();
+    int danho = arma.GetDanhoMax() + atk.GetDanio();
+    return danho;
+}
