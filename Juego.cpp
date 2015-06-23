@@ -29,8 +29,7 @@
 #define FINAL 4
 #define ARTEFACTO 5
 #define MONSTRUO 6
-#define PABLITOYVIVIAN 0
-#define JUANI 10
+
 
 #define ENTER_PRESIONADO 1
 #define RETORNA 2
