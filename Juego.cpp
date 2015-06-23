@@ -156,11 +156,13 @@ int Juego::Jugar(){
     cout<<"INGRESE EL NOMBRE DE SU PERSONAJE: "<<endl;
     cin>>nombre;
     
-    heroe.SetNombre(nombre); heroe.SetPosX(Ix); heroe.SetPosY(Iy);  //Posicion inicial
+    heroe.SetNombre(nombre); heroe.SetPosX(Ix+1); heroe.SetPosY(Iy);  //Posicion inicial
     vector<Laberinto>::iterator it;
     it=laberintos.begin();
+    this->laberintoActual=*it.base();
+    this->laberintoActual(heroe.GetPosX(),heroe.GetPosY()).SetTipo(2);
     while(it!=laberintos.end()){
-        this->laberintoActual=*it.base();
+        //this->laberintoActual=*it.base();
     dib.Dibuja(heroe.GetPosX(),heroe.GetPosY(),this->laberintoActual.GetM(),this->laberintoActual.GetN(),this->laberintoActual,graf);
         int cond=0;
         cond=this->movimiento(heroe,graf);
@@ -178,18 +180,24 @@ int Juego::Jugar(){
             } 
         }
         else if(cond==RETORNA){
-            if(it==laberintos.begin()) continue;
+            if(it==laberintos.begin()) {                
+                continue;
+            }
             it--;
             int x=0,y=0;
-            buscar_pos(*it.base(),x,y);
+            buscar_pos(*it.base(),x,y,0);
+            this->laberintoActual =*it;
             heroe.SetPosX(x); heroe.SetPosY(y);
+            this->laberintoActual(x,y).SetTipo(2);
         }
         else if(cond==AVANZA){
             it++;
             if(it==laberintos.end()) continue;
             int x=0,y=0;
-            buscar_pos(*it.base(),x,y);
+            buscar_pos(*it.base(),x,y,1);
+            this->laberintoActual=*it;
             heroe.SetPosX(x); heroe.SetPosY(y);
+            this->laberintoActual(x,y).SetTipo(2);
         }
         else if(cond==MUERTE){
             return 1;
@@ -204,9 +212,11 @@ int  Juego::movimiento(Avatar& heroe,const graficos& graf){
     int xi=heroe.GetPosX(), yi=heroe.GetPosY();
     int x=xi, y=yi;
     bool enter;
+    cout<<"POSICIONES: "<<x<<" "<<y<<endl;
     int valor= graf.Movimiento(x,y); // si se presiona tecla especial (1:enter)
+    cout<<"POSICION LUEGO: "<<x<<" "<<y<<endl;
     if(valor) return ENTER_PRESIONADO;   
-    int tipo =this->laberintoActual(xi,yi).GetTipo();
+    int tipo =this->laberintoActual(x,y).GetTipo();
     if(tipo==ARTEFACTO){
         Artefacto *art;
         art=this->laberintoActual.buscarArtefacto(x,y);
@@ -248,14 +258,19 @@ int  Juego::movimiento(Avatar& heroe,const graficos& graf){
             return MUERTE; 
         }
     }
-    else if(tipo==INICIO)
-        return RETORNA; 
-    else if(tipo==FINAL)
+    else if(tipo==INICIO){
+       this->laberintoActual(xi,yi).SetTipo(0);
+       return RETORNA;  
+    }
+        
+    else if(tipo==FINAL){
+        this->laberintoActual(xi,yi).SetTipo(0);
         return AVANZA; 
+    }
     else if(tipo==VACIO){
         heroe.SetPosX(x); heroe.SetPosY(y);
         this->laberintoActual(x,y).SetTipo(2);
-        this->laberintoActual(x,y).SetTipo(0);
+        this->laberintoActual(xi,yi).SetTipo(0);
         return MOVIMIENTO; 
     }
     else{
@@ -267,14 +282,87 @@ int  Juego::movimiento(Avatar& heroe,const graficos& graf){
 void Juego::mostrar_equipo(Avatar& heroe) const{
     /* Mostrará el equipamiento actual del personaje*/
 }
-void Juego::buscar_pos(const Laberinto& lab,int& x,int& y) const{
-    for(int i=0;i<lab.GetM();i++){
-        for(int j=0;j<lab.GetN();j++){
-            if(lab(i,j).GetTipo()==3){// Ingreso
-                x=i;
-                y=j;
-                return;
-            }         
+void Juego::buscar_pos(const Laberinto& lab,int& x,int& y,int cond) const{
+    if (cond){
+        for(int i=0;i<lab.GetM();i++){ 
+            for(int j=0;j<lab.GetN();j++){
+                if(lab(i,j).GetTipo()==3){// Ingreso
+                    if(lab(i+1,j).GetTipo()!=1){
+                        x=i+1;
+                        y=j;
+                        return;
+                    }else if (lab(i,j+1).GetTipo()!=1){
+                        x=i;
+                        y=j+1;
+                        return; 
+                    }else if (lab(i-1,j).GetTipo()!=1){
+                        x=i-1;
+                        y=j;
+                        return;
+                    }else if (lab(i,j-1).GetTipo()!=1){
+                        x=i;
+                        y=j-1;
+                        return;
+                    }else if (lab(i-1,j-1).GetTipo()!=1){
+                        x=i-1;
+                        y=j-1;
+                        return;
+                    }else if (lab(i+1,j-1).GetTipo()!=1){
+                        x=i+1;
+                        y=j-1;
+                        return;
+                    }else if (lab(i-1,j+1).GetTipo()!=1){
+                        x=i-1;
+                        y=j+1;
+                        return;
+                    }else if (lab(i+1,j+1).GetTipo()!=1){
+                        x=i+1;
+                        y=j+1;
+                        return;
+                    }    
+                }     
+            }
+        }
+    }
+    else{
+                for(int i=0;i<lab.GetM();i++){ 
+            for(int j=0;j<lab.GetN();j++){
+                if(lab(i,j).GetTipo()==4){// Ingreso
+                    if(lab(i+1,j).GetTipo()!=1){
+                        x=i+1;
+                        y=j;
+                        return;
+                    }else if (lab(i,j+1).GetTipo()!=1){
+                        x=i;
+                        y=j+1;
+                        return; 
+                    }else if (lab(i-1,j).GetTipo()!=1){
+                        x=i-1;
+                        y=j;
+                        return;
+                    }else if (lab(i,j-1).GetTipo()!=1){
+                        x=i;
+                        y=j-1;
+                        return;
+                    }else if (lab(i-1,j-1).GetTipo()!=1){
+                        x=i-1;
+                        y=j-1;
+                        return;
+                    }else if (lab(i+1,j-1).GetTipo()!=1){
+                        x=i+1;
+                        y=j-1;
+                        return;
+                    }else if (lab(i-1,j+1).GetTipo()!=1){
+                        x=i-1;
+                        y=j+1;
+                        return;
+                    }else if (lab(i+1,j+1).GetTipo()!=1){
+                        x=i+1;
+                        y=j+1;
+                        return;
+                    }    
+                }     
+            }
         }
     }
 }

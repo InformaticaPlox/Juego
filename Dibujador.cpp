@@ -6,6 +6,7 @@
  */
 
 #include "graficos.h"
+#include <iostream>
 #include "Dibujador.h"
 #include "Laberinto.h"
 #define TAM 50
@@ -49,8 +50,11 @@ void Dibujador::Dibuja(int posX, int posY,int limFil,int limCol,const Laberinto&
     for(int i=0;i<lab.GetM();i++)
         matriz[i]=new int[lab.GetN()];
     for(int i=0;i<lab.GetM();i++){
-            for(int j=0;j<lab.GetN();j++)
+            for(int j=0;j<lab.GetN();j++){
                 matriz[i][j]=lab(i,j).GetTipo();
+                cout<<matriz[i][j];
+            }
+            cout<<endl;
     }
     graf.Dibujar(posX,this->B,posY,this->A,limFil,limCol,matriz);
     delete[] matriz;

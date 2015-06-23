@@ -35,16 +35,16 @@ graficos::~graficos() {
 int graficos::Movimiento(int& x,int& y)const{
 
     
-    int key;
-    key= readkey();
-    while((key !=KEY_ENTER && key != KEY_W && key!= KEY_S && key!=KEY_A && key !=KEY_D)){
-        key=readkey();
+    readkey();
+//    allegro_message("presionado");
+ while((key[KEY_ENTER] && key[KEY_UP] && key[KEY_DOWN] && key[KEY_LEFT] && key[KEY_RIGHT])){
+        readkey();
     }
-    if      (key==KEY_ENTER) return 1;
-    else if (key==KEY_W)    x-=1;
-    else if (key==KEY_S)  x+=1;
-    else if (key ==KEY_A) y-=1;
-    else                     y+=1;
+    if      (key[KEY_ENTER]){ return 1;}
+    else if (key[KEY_UP])   {y-=1;}
+    else if (key[KEY_DOWN]) {y+=1;}
+    else if (key[KEY_LEFT]) {x-=1;}
+    else if (key[KEY_RIGHT]){x+=1;}
     return 0;
 }
 int  graficos::Recibe_tecla()const{
@@ -71,16 +71,9 @@ void graficos::Dibujar(int posX,int B,int posY,int A,int limFil,int limCol,int *
     if ((posX + B) > limFil) finFil = limFil;
     if ((posY - A) < 0) iniCol = 0;
     if ((posY + A) > limCol) finCol = limCol;
-    for(int i = iniFil; i <= finFil; i++){
-        for(int j = iniCol; j <= finCol; j++){
+    for(int i = iniFil; i < finFil; i++){
+        for(int j = iniCol; j < finCol; j++){
             int valor = matriz[i][j];
-//            if (valor == 0){cout << ' ';}
-//            if (valor == 1){cout << '#';}
-//            if (valor == 2){cout << 'H';}
-//            if (valor == 3){cout << 'I';}
-//            if (valor == 4){cout << 'F';} 
-//            if (valor == 5){cout << 'A';}
-//            if (valor == 6){cout << 'M';}
             if (valor == 0){blit(piso,screen,0,0,(i-iniFil)*TAM,(j-iniCol)*TAM,avatar->w,avatar->h);}
             if (valor == 1){blit(pared,screen,0,0,(i-iniFil)*TAM,(j-iniCol)*TAM,avatar->w,avatar->h);}
             if (valor == 2){blit(avatar,screen,0,0,(i-iniFil)*TAM,(j-iniCol)*TAM,avatar->w,avatar->h);}

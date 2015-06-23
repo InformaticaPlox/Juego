@@ -32,7 +32,7 @@ public:
     int* Array_index()const;
     bool Batalla(Avatar&,Monstruo&)const;
     int mostrar_menu()const;
-    void buscar_pos(const Laberinto&,int&,int&) const;
+    void buscar_pos(const Laberinto&,int&,int&,int) const;
     
     int movimiento(Avatar&,const graficos&) ;
     void mostrar_equipo(Avatar&) const;
