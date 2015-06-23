@@ -50,8 +50,6 @@ OBJECTFILES= \
 	${OBJECTDIR}/Laberinto.o \
 	${OBJECTDIR}/Monstruo.o \
 	${OBJECTDIR}/Pocion.o \
-	${OBJECTDIR}/PocionCuracion.o \
-	${OBJECTDIR}/PocionMana.o \
 	${OBJECTDIR}/Saco.o \
 	${OBJECTDIR}/auxiliar.o \
 	${OBJECTDIR}/graficos.o \
@@ -156,16 +154,6 @@ ${OBJECTDIR}/Pocion.o: Pocion.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -Iinclude -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Pocion.o Pocion.cpp
-
-${OBJECTDIR}/PocionCuracion.o: PocionCuracion.cpp 
-	${MKDIR} -p ${OBJECTDIR}
-	${RM} "$@.d"
-	$(COMPILE.cc) -g -Iinclude -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/PocionCuracion.o PocionCuracion.cpp
-
-${OBJECTDIR}/PocionMana.o: PocionMana.cpp 
-	${MKDIR} -p ${OBJECTDIR}
-	${RM} "$@.d"
-	$(COMPILE.cc) -g -Iinclude -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/PocionMana.o PocionMana.cpp
 
 ${OBJECTDIR}/Saco.o: Saco.cpp 
 	${MKDIR} -p ${OBJECTDIR}

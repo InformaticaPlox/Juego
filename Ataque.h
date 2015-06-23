@@ -13,7 +13,7 @@ using namespace std;
 
 class Ataque {
 public:
-    Ataque(string,int,int,string);
+    Ataque(string,int,int,string="");
     Ataque();
     Ataque(const Ataque& orig);
     virtual ~Ataque();

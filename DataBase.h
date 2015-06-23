@@ -11,8 +11,7 @@
 #include "Monstruo.h"
 #include "Armadura.h"
 #include "Arma.h"
-#include "PocionCuracion.h"
-#include "PocionMana.h"
+#include "Pocion.h"
 
 class DataBase {
 public:
@@ -20,8 +19,15 @@ public:
     virtual ~DataBase();
     Artefacto *devuelve_artefacto();
     Monstruo devuelve_monstruo();
+    void SetMonstruo(char*);
+    void SetArmas   (char*);
+    void SetPocimas (char*);
+    void SetArmaduras(char*);
+
 private:
-    std::vector<Artefacto*> artefactos;
+    std::vector<Pocion> pociones;
+    std::vector<Arma>armas;
+    std::vector<Armadura>armaduras;
     std::vector<Monstruo> monstruos;
 };
 

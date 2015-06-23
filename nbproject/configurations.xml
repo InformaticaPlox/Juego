@@ -19,8 +19,6 @@
       <itemPath>Laberinto.h</itemPath>
       <itemPath>Monstruo.h</itemPath>
       <itemPath>Pocion.h</itemPath>
-      <itemPath>PocionCuracion.h</itemPath>
-      <itemPath>PocionMana.h</itemPath>
       <itemPath>Saco.h</itemPath>
       <itemPath>auxiliar.h</itemPath>
       <itemPath>graficos.h</itemPath>
@@ -47,8 +45,6 @@
       <itemPath>Laberinto.cpp</itemPath>
       <itemPath>Monstruo.cpp</itemPath>
       <itemPath>Pocion.cpp</itemPath>
-      <itemPath>PocionCuracion.cpp</itemPath>
-      <itemPath>PocionMana.cpp</itemPath>
       <itemPath>Saco.cpp</itemPath>
       <itemPath>auxiliar.cpp</itemPath>
       <itemPath>graficos.cpp</itemPath>
@@ -149,14 +145,6 @@
       </item>
       <item path="Pocion.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="PocionCuracion.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="PocionCuracion.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="PocionMana.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="PocionMana.h" ex="false" tool="3" flavor2="0">
-      </item>
       <item path="Saco.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Saco.h" ex="false" tool="3" flavor2="0">
@@ -251,14 +239,6 @@
       <item path="Pocion.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Pocion.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="PocionCuracion.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="PocionCuracion.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="PocionMana.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="PocionMana.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Saco.cpp" ex="false" tool="1" flavor2="0">
       </item>

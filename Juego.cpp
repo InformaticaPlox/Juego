@@ -18,9 +18,7 @@
 #include "DataBase.h"
 #include "graficos.h"
 
-//#include <allegro.h>
-//#pragma comment(lib, "alleg.lib")
-//#include <winalleg.h>
+
 
 
 #define VACIO 0
@@ -140,7 +138,7 @@ int Juego::Jugar(){
     vector <Laberinto> laberintos;
     DataBase data;
     graficos graf;
-
+    
     /* Funciones:*/
     
     string* nombreArchivo=this->nombres_archivos();

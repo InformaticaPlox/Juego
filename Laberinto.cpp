@@ -184,9 +184,9 @@ void Laberinto::InicializarArtefacto(DataBase &data){
     for(int i=0;i<this->M;i++){
         for(int j=0;i<this->N;j++){
             if(this->matriz[i][j].GetTipo()==5){
-                Artefacto* art = data.devuelve_artefacto();
-                art->setCoordX(i); art->setCoordY(j);
-                this->artefactos.push_back(art);
+               // Artefacto* art = data.devuelve_artefacto();
+                //art->setCoordX(i); art->setCoordY(j);
+                //this->artefactos.push_back(art);
             }
         }
     }

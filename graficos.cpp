@@ -72,8 +72,6 @@ void graficos::Dibujar(int posX,int B,int posY,int A,int limFil,int limCol,int *
     if ((posX + B) > limFil) finFil = limFil;
     if ((posY - A) < 0) iniCol = 0;
     if ((posY + A) > limCol) finCol = limCol;
-    for(int i = iniFil; i <= finFil; i++){
-        for(int j = iniCol; j <= finCol; j++){
     for(int i = iniFil; i <=finFil; i++){
         for(int j = iniCol; j <=finCol; j++){
             int valor = matriz[i][j];
@@ -93,6 +91,7 @@ void graficos::Dibujar(int posX,int B,int posY,int A,int limFil,int limCol,int *
 //    destroy_bitmap(inicio);
 //    destroy_bitmap(fin);
 }
+
 int  graficos::Inicio()const{
     
 }
