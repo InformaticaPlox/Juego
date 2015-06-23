@@ -15,8 +15,8 @@
 #include <cstdlib>
 
 
-double const pcA=0.20;
-double const pcM =0.35;
+double const pcA=0.04;
+double const pcM =0.05;
 
 using namespace std;
 
