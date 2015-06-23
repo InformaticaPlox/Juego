@@ -11,6 +11,7 @@
 #include "Laberinto.h"
 #include "GestorLaberinto.h"
 class Avatar;
+class graficos;
 class Juego {
 public:
     Juego(); 
@@ -33,7 +34,7 @@ public:
     int mostrar_menu()const;
     void buscar_pos(const Laberinto&,int&,int&) const;
     
-    int movimiento(Avatar&) ;
+    int movimiento(Avatar&,const graficos&) ;
     void mostrar_equipo(Avatar&) const;
     void mostrar_inventario(Avatar&) const;
     int  mostrar_salir(Avatar&)const;

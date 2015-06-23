@@ -43,8 +43,7 @@ Dibujador::~Dibujador() {
     this->B = 0;
 }
 
-void Dibujador::Dibuja(int posX, int posY,int limFil,int limCol,const Laberinto& lab){
-    graficos graf;
+void Dibujador::Dibuja(int posX, int posY,int limFil,int limCol,const Laberinto& lab,const graficos& graf){
     int **matriz;
     matriz =new int*[lab.GetM()];
     for(int i=0;i<lab.GetM();i++)

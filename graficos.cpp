@@ -19,9 +19,10 @@
 
 graficos::graficos() {
     allegro_init();
-    set_gfx_mode(GFX_AUTODETECT_WINDOWED,800,600,0,0);
     install_timer();
     install_keyboard();
+    set_color_depth(24);
+    set_gfx_mode(GFX_AUTODETECT_WINDOWED,800,600,0,0);
     
 }
 
@@ -32,19 +33,17 @@ graficos::~graficos() {
 }
 
 int graficos::Movimiento(int& x,int& y)const{
-    allegro_init();
-    install_timer();
-    install_keyboard();
+
     
     int key;
     key= readkey();
-    while((key !=KEY_ENTER && key != KEY_DOWN && key!= KEY_UP && key!=KEY_LEFT && key !=KEY_RIGHT)){
+    while((key !=KEY_ENTER && key != KEY_W && key!= KEY_S && key!=KEY_A && key !=KEY_D)){
         key=readkey();
     }
     if      (key==KEY_ENTER) return 1;
-    else if (key==KEY_UP)    x-=1;
-    else if (key==KEY_DOWN)  x+=1;
-    else if (key ==KEY_LEFT) y-=1;
+    else if (key==KEY_W)    x-=1;
+    else if (key==KEY_S)  x+=1;
+    else if (key ==KEY_A) y-=1;
     else                     y+=1;
     return 0;
 }

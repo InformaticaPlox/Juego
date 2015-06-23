@@ -10,13 +10,13 @@
 
 #include "Celda.h"
 class Laberinto;
-
+class graficos;
 class Dibujador {
 public:
     Dibujador(int = 2, int = 2);
     Dibujador(const Dibujador& orig);
     virtual ~Dibujador();
-    void Dibuja(int,int,int,int,const Laberinto& );
+    void Dibuja(int,int,int,int,const Laberinto& ,const graficos&);
     void SetB(int B);
     int GetB() const;
     void SetA(int A);

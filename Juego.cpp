@@ -139,6 +139,7 @@ int Juego::Jugar(){
     Dibujador dib(4,5);
     vector <Laberinto> laberintos;
     DataBase data;
+    graficos graf;
 
     /* Funciones:*/
     
@@ -160,9 +161,9 @@ int Juego::Jugar(){
     it=laberintos.begin();
     while(it!=laberintos.end()){
         this->laberintoActual=*it.base();
-    dib.Dibuja(heroe.GetPosX(),heroe.GetPosY(),this->laberintoActual.GetM(),this->laberintoActual.GetN(),this->laberintoActual);
+    dib.Dibuja(heroe.GetPosX(),heroe.GetPosY(),this->laberintoActual.GetM(),this->laberintoActual.GetN(),this->laberintoActual,graf);
         int cond=0;
-        cond=this->movimiento(heroe);
+        cond=this->movimiento(heroe,graf);
         if(cond==ENTER_PRESIONADO){
             cond=this->mostrar_menu();
             if(cond==1)
@@ -199,12 +200,12 @@ int Juego::Jugar(){
     return 2;                
 }
 /* Agregar el this->allegro.dibujar aqui o en juego::jugar*/
-int  Juego::movimiento(Avatar& heroe ){
+int  Juego::movimiento(Avatar& heroe,const graficos& graf){
     int xi=heroe.GetPosX(), yi=heroe.GetPosY();
     int x=xi, y=yi;
     bool enter;
-    //int valor=this->allegro.recibirTecla(x,y); /* si se presiona tecla especial (1:enter)
-    if(enter) return ENTER_PRESIONADO;   
+    int valor= graf.Movimiento(x,y); // si se presiona tecla especial (1:enter)
+    if(valor) return ENTER_PRESIONADO;   
     int tipo =this->laberintoActual(xi,yi).GetTipo();
     if(tipo==ARTEFACTO){
         Artefacto *art;
