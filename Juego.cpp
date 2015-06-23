@@ -163,7 +163,7 @@ int Juego::Jugar(){
     this->laberintoActual(heroe.GetPosX(),heroe.GetPosY()).SetTipo(2);
     while(it!=laberintos.end()){
         //this->laberintoActual=*it.base();
-    dib.Dibuja(heroe.GetPosX(),heroe.GetPosY(),this->laberintoActual.GetM()-1,this->laberintoActual.GetN()-1,this->laberintoActual,graf);
+    dib.Dibuja(heroe.GetPosX(),heroe.GetPosY(),this->laberintoActual.GetM(),this->laberintoActual.GetN(),this->laberintoActual,graf);
         int cond=0;
         cond=this->movimiento(heroe,graf);
         if(cond==ENTER_PRESIONADO){
