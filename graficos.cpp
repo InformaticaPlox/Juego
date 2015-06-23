@@ -33,7 +33,7 @@ int graficos::Movimiento(int& x,int& y)const{
     while((key !=KEY_ENTER && key != KEY_DOWN && key!= KEY_UP && key!=KEY_LEFT && key !=KEY_RIGHT)){
         key=readkey();
     }
-    if(key==KEY_ENTER) return 1;
+    if      (key==KEY_ENTER) return 1;
     else if (key==KEY_UP)    x-=1;
     else if (key==KEY_DOWN)  x+=1;
     else if (key ==KEY_LEFT) y-=1;
@@ -41,8 +41,14 @@ int graficos::Movimiento(int& x,int& y)const{
     return 0;
 }
 int  graficos::Recibe_tecla()const{
+    allegro_init();
+    install_timer();
+    install_keyboard();
     
-}
+    int key;
+    key= readkey();
+    
+}  
 void graficos::Dibujar(int,int,int,int,int**)const{
     
 }
