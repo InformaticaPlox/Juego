@@ -23,10 +23,14 @@ public:
     int  RecogerArtefacto()const; /*Descripcion */
     void PantallaVictoria()const;
     void PantallaPerder()const;
-    void PantallaCreditos()const;  
+    
     
     /* EL HARD:*/
     int InterfazCombate()const; /*Descripcion*/
+    
+    
+
+    
 private:
     
 };
