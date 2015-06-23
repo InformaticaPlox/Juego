@@ -14,7 +14,6 @@
 
 
 #include "graficos.h"
-
 #define TAM 50
 
 graficos::graficos() {
@@ -36,7 +35,7 @@ int graficos::Movimiento(int& x,int& y)const{
 
     
     readkey();
-//    allegro_message("presionado");
+
  while((key[KEY_ENTER] && key[KEY_UP] && key[KEY_DOWN] && key[KEY_LEFT] && key[KEY_RIGHT])){
         readkey();
     }
@@ -65,12 +64,16 @@ void graficos::Dibujar(int posX,int B,int posY,int A,int limFil,int limCol,int *
     BITMAP* inicio = load_bitmap("inicio.bmp",NULL);
     BITMAP* fin = load_bitmap("salida.bmp",NULL);
     BITMAP* piso = load_bitmap("piso.bmp",NULL);
+    BITMAP* artefacto = load_bitmap("artefacto.bmp",NULL);
+    BITMAP* monstruo = load_bitmap("monstruo.bmp",NULL);
    
     
     if ((posX - B) < 0) iniFil = 0;
     if ((posX + B) > limFil) finFil = limFil;
     if ((posY - A) < 0) iniCol = 0;
     if ((posY + A) > limCol) finCol = limCol;
+    for(int i = iniFil; i <= finFil; i++){
+        for(int j = iniCol; j <= finCol; j++){
     for(int i = iniFil; i <=finFil; i++){
         for(int j = iniCol; j <=finCol; j++){
             int valor = matriz[i][j];
@@ -78,7 +81,9 @@ void graficos::Dibujar(int posX,int B,int posY,int A,int limFil,int limCol,int *
             if (valor == 1){blit(pared,screen,0,0,(i-iniFil)*TAM,(j-iniCol)*TAM,avatar->w,avatar->h);}
             if (valor == 2){blit(avatar,screen,0,0,(i-iniFil)*TAM,(j-iniCol)*TAM,avatar->w,avatar->h);}
             if (valor == 3){blit(inicio,screen,0,0,(i-iniFil)*TAM,(j-iniCol)*TAM,avatar->w,avatar->h);}
-            if (valor == 4){blit(fin,screen,0,0,(i-iniFil)*TAM,(j-iniCol)*TAM,avatar->w,avatar->h);}           
+            if (valor == 4){blit(fin,screen,0,0,(i-iniFil)*TAM,(j-iniCol)*TAM,avatar->w,avatar->h);} 
+            if (valor == 5){blit(artefacto,screen,0,0,(i-iniFil)*TAM,(j-iniCol)*TAM,avatar->w,avatar->h);}
+            if (valor == 6){blit(monstruo,screen,0,0,(i-iniFil)*TAM,(j-iniCol)*TAM,avatar->w,avatar->h);}
         }
 
     }
