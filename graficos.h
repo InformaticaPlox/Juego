@@ -14,6 +14,7 @@ public:
     graficos(const graficos& orig);
     virtual ~graficos();
     int  Movimiento(int&,int&)const;
+    int  Recibe_tecla()const;
     void Dibujar(int,int,int,int,int**)const;
     int  Inicio()const;
     int  Inventario()const; /*Dentro debe ir las descripciones */

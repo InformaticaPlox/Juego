@@ -40,6 +40,9 @@ int graficos::Movimiento(int& x,int& y)const{
     else                     y+=1;
     return 0;
 }
+int  graficos::Recibe_tecla()const{
+    
+}
 void graficos::Dibujar(int,int,int,int,int**)const{
     
 }
