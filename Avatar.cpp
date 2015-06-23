@@ -111,9 +111,19 @@ void Avatar::recibeDanio(int danho){
     this->SetVidaActual(vida);
 }
 
-void Avatar::disminuyeMana(int cantidad){
+void Avatar::disminuyeMana(int tipoAtq){
+    Arma arma = this->obtenArma();
+    int manaAtq;
+    if (tipoAtq == 1){
+        Ataque atq = arma.GetAtaque1();
+        manaAtq = atq.GetMana();
+    }
+    else{
+        Ataque atq =  arma.GetAtaque2();
+        manaAtq = atq.GetMana();
+    }
     int mana = this->GetManaActual();
-    mana = mana - cantidad;
+    mana = mana - manaAtq;
     this->SetManaActual(mana);
 }
 
@@ -126,4 +136,17 @@ int Avatar::obtenDanho(int i){
         atk = arma.GetAtaque2();
     int danho = arma.GetDanhoMax() + atk.GetDanio();
     return danho;
+}
+
+int Avatar::verificaMana(int tipoAtq){
+    Arma arma = this->obtenArma();
+    if (tipoAtq == 1){
+        Ataque atk = arma.GetAtaque1();
+        if (this->GetManaActual() >= atk.GetMana()) return 1;
+    }
+    else{
+        Ataque atk = arma.GetAtaque2();
+        if (this->GetManaActual() >= atk.GetMana()) return 1;
+    }
+    return 0;
 }

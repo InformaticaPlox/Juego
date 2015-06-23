@@ -384,9 +384,8 @@ int Juego::Calc_estado(int x,int y)const{
 bool Juego::Batalla(Avatar& heroe, Monstruo& mon)const{
     int vidaHeroe = heroe.GetVidaActual();
     int vidaMonstruo = mon.GetVidaActual();
-    Arma arma = heroe.obtenArma();
-    Ataque atk1 = arma.GetAtaque1();
-    Ataque atk2 = arma.GetAtaque2();
+    int danho1 = heroe.obtenDanho(1);
+    int danho2 = heroe.obtenDanho(2);
     while ((vidaHeroe != 0) && (vidaMonstruo != 0)){
         char accion;
         int selAtk;
@@ -398,17 +397,16 @@ bool Juego::Batalla(Avatar& heroe, Monstruo& mon)const{
             //Usa ataque
             int danho;
             if (selAtk == 1){
-                danho = arma.GetDanhoMax() + atk1.GetDanio();
-                if (atk1.GetMana() >= heroe.GetManaActual())
-                    heroe.disminuyeMana(atk1.GetMana());
+                if (heroe.verificaMana(1))
+                    heroe.disminuyeMana(1);
+                mon.recibeDanio(danho1); //Disminuir vida monstruo
             }
             else if (selAtk == 2){
-                danho = arma.GetDanhoMax() + atk2.GetDanio();
-                if (atk2.GetMana() >= heroe.GetManaActual())
-                    heroe.disminuyeMana(atk2.GetMana());
+                if (heroe.verificaMana(2))
+                    heroe.disminuyeMana(2);
+                mon.recibeDanio(danho2); //Disminuir vida monstruo
             }
-            //Disminuir vida monstruo
-            mon.recibeDanio(danho);
+            if (mon.GetVidaActual() == 0) break;
             //Monstruo ataca
             int danhoMons = mon.GetAtaque();
             //Disminuir vida heroe
