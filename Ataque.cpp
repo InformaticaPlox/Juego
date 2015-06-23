@@ -58,3 +58,9 @@ Ataque Ataque::operator =(const Ataque& atk){
         return *this;
     }
 }
+void Ataque::SetDanio(int danio){
+    this->danio=danio;
+}
+void Ataque::SetMana(int mana){
+    this->mana=mana;
+}

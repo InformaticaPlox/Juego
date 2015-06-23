@@ -10,6 +10,8 @@
 #include <cstring>
 #include <iostream>
 #include <fstream>
+#define NUMFILE 10
+#define PORCENTAJEAUMENTO 0.6
 using namespace std;
 
 DataBase::DataBase() {
@@ -42,13 +44,39 @@ DataBase::DataBase() {
 DataBase::~DataBase() {
 }
 
-/*Artefacto *DataBase::devuelve_artefacto(){
-    int size =this->artefactos.size();
-    int index = rand()%size;
-    Artefacto * art = this->artefactos[index];
-    return art;
+Artefacto *DataBase::devuelve_artefacto(int* niveles){
+    int min,max;
+    this->rangoNiveles(niveles,min,max);
+    int nivelRandom =rand()%(max-min);
+    int opcion =rand()%3;
+    if(opcion==0){ //Es una armadura
+        int size=this->armaduras.size();
+        int index=rand()%size;
+        Armadura arm =this->armaduras[index];
+        arm.SetDefensa(arm.GetDefensa()*nivelRandom*PORCENTAJEAUMENTO);
+        Artefacto * art=&arm;
+        return art;
+    }
+    else if(opcion==1){ //Arma
+        int size =this->armas.size();
+        int index =rand()%size;
+        Arma weapon=this->armas[index];
+        weapon.SetDanhoMax(weapon.GetDanhoMax()*nivelRandom*PORCENTAJEAUMENTO); weapon.SetDanhoMin(weapon.GetDanhoMin()*nivelRandom*PORCENTAJEAUMENTO);
+        weapon.GetAtaque1().SetDanio(weapon.GetAtaque1().GetDanio()*nivelRandom*PORCENTAJEAUMENTO); weapon.GetAtaque2().SetDanio(weapon.GetAtaque2().GetDanio()*nivelRandom*PORCENTAJEAUMENTO);
+        weapon.GetAtaque1().SetMana(weapon.GetAtaque1().GetMana()*nivelRandom*PORCENTAJEAUMENTO); weapon.GetAtaque2().SetMana(weapon.GetAtaque2().GetMana()*nivelRandom*PORCENTAJEAUMENTO);
+        Artefacto *art=&weapon;
+        return art;
+    }
+    else{
+        int size=this->pociones.size();
+        int index=rand()%size;
+        Pocion pocion=this->pociones[index];
+        pocion.SetPuntos(pocion.GetPuntos()*nivelRandom*PORCENTAJEAUMENTO);
+        Artefacto *art=&pocion;
+        return art;
+    }
 }
- * */
+
 Monstruo DataBase::devuelve_monstruo(){
     int size = this->monstruos.size();
     int index =rand()% size;
@@ -91,3 +119,11 @@ void DataBase::SetArmaduras(char* buffLinea){
     Armadura arm(defensa,nombre);
     this->armaduras.push_back(arm);
 }
+ void DataBase::rangoNiveles(int* niveles,int& min,int& max)const{
+     min=12;max=-1;
+     for(int i=0;i<NUMFILE;i++){
+         if(niveles[i]<min) min=niveles[i];
+         else if(niveles[i]>max) max=niveles[i];
+     }
+     min+=1; max+=1;
+ }

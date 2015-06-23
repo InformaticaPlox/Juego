@@ -134,7 +134,7 @@ int Avatar::obtenDanho(int i){
         atk = arma.GetAtaque1();
     else
         atk = arma.GetAtaque2();
-    int danho = arma.GetDanhoMax() + atk.GetDanio();
+    int danho = arma.critico() + atk.GetDanio();
     return danho;
 }
 

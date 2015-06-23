@@ -17,12 +17,13 @@ class DataBase {
 public:
     DataBase();
     virtual ~DataBase();
-    Artefacto *devuelve_artefacto();
+    Artefacto *devuelve_artefacto(int*);
     Monstruo devuelve_monstruo();
     void SetMonstruo(char*);
     void SetArmas   (char*);
     void SetPocimas (char*);
     void SetArmaduras(char*);
+    void rangoNiveles(int*,int&,int&)const;
 
 private:
     std::vector<Pocion> pociones;

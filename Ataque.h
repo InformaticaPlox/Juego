@@ -18,7 +18,9 @@ public:
     Ataque(const Ataque& orig);
     virtual ~Ataque();
     std::string GetDescripcion() const;
+    void SetMana(int);
     int GetMana() const;
+    void SetDanio(int);
     int GetDanio() const;
     std::string GetNombre() const;
     Ataque operator=(const Ataque& atk);
