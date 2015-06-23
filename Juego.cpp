@@ -30,6 +30,7 @@
 #define ARTEFACTO 5
 #define MONSTRUO 6
 #define PABLITOYVIVIAN 0
+#define Oso 10
 
 #define ENTER_PRESIONADO 1
 #define RETORNA 2
