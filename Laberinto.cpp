@@ -67,8 +67,8 @@ void Laberinto::SetMatriz(ifstream &arch) {
                     this->matriz[i][j].SetTipo(6);
                 else{
                     valor = fRand(0,1);
-                if (this->pctArtefacto > valor) 
-                    this->matriz[i][j].SetTipo(5);                
+                    if (this->pctArtefacto > valor) 
+                        this->matriz[i][j].SetTipo(5);                
                 }                  
             }
         }
@@ -182,7 +182,7 @@ Laberinto& Laberinto::operator=(const Laberinto& orig){
 }
 void Laberinto::InicializarArtefacto(DataBase &data){
     for(int i=0;i<this->M;i++){
-        for(int j=0;i<this->N;j++){
+        for(int j=0;j<this->N;j++){
             if(this->matriz[i][j].GetTipo()==5){
                 Artefacto* art = data.devuelve_artefacto(this->nivelesArtefacto);
                 art->setCoordX(i); art->setCoordY(j);

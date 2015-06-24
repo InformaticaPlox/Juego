@@ -50,13 +50,13 @@ using namespace std;
 /* MÉTODOS*/
 
 Juego::Juego() {
-   srand(time(NULL));
-   
+    srand(time(NULL));
+    graficos graf;
     while(1){
         int modo= this->Menu();
         if(modo==1){
             this->Prologo();
-            int r=this->Jugar();
+            int r=this->Jugar(graf);
             if(r==1){ // Perdiste
                 cout<<"         GAME OVER"<<endl;
                 cout<<"¿DESEA VOLVER A JUGAR?(Y/N)"<<endl;
@@ -66,20 +66,20 @@ Juego::Juego() {
             }
             else{
                 if(r==0)// El jugador decidio salir del juego
-                    this->PantallaAbandono();
+                    this->PantallaAbandono(graf);
                 else // El jugador ha ganado
-                    this->PantallaFinal();        
+                    this->PantallaFinal(graf);        
             }
         }
         else if(modo==2){// Cargar un juego guardado
             int r=this->Cargar();
             if(r==1) // El jugador decidio salir del juego
-                this->PantallaAbandono();
+                this->PantallaAbandono(graf);
             else
-                this->PantallaFinal();
+                this->PantallaFinal(graf);
         }
         else if(modo==3) // creditos
-            this->Creditos();
+            this->Creditos(graf);
         else
             break;
     }   
@@ -128,7 +128,7 @@ void Juego::Prologo()const{
     cout<<"HOLI";
     
 }
-int Juego::Jugar(){
+int Juego::Jugar(graficos &graf){
     /* Variables:*/
     int cond;
     string nombre;
@@ -137,7 +137,7 @@ int Juego::Jugar(){
     Dibujador dib(4,5);
     vector <Laberinto> laberintos;
     DataBase data;
-    graficos graf;
+    
     
     /* Funciones:*/
     
@@ -148,7 +148,7 @@ int Juego::Jugar(){
     for(int i=1;i<NUMFILE-1;i++) index2[i]=index[i-1]+1;
     
     for(int i=0;i<NUMFILE;i++){   
-        laberintos.push_back(gestor.crearLaberinto(nombreArchivo[index2[i]],i,data));
+        laberintos.push_back(gestor.crearLaberinto(nombreArchivo[index2[i]],i,data)); //Se esta eliminando el laberinto
     }
     /* Funcion conseguir nombre*/
     cout<<"INGRESE EL NOMBRE DE SU PERSONAJE: "<<endl;
@@ -404,13 +404,16 @@ int Juego::Menu()const{
     }
     return estado+1;
 }
-void Juego::PantallaFinal()const{
+void Juego::PantallaFinal(graficos &graf)const{
+    graf.PantallaVictoria();
     /* El jugador ha vencido*/
 }
-void Juego::PantallaAbandono()const{
+void Juego::PantallaAbandono(graficos &graf)const{
+    graf.PantallaPerder();
     /* Es usted un cobarde */
 }
-void Juego::Creditos()const{
+void Juego::Creditos(graficos &graf)const{
+    graf.PantallaCreditos();
     /* Creditos del juego*/
     
 }

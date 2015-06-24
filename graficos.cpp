@@ -114,6 +114,10 @@ void graficos::PantallaVictoria()const{
 void graficos::PantallaPerder()const{
     
 }
+
+void graficos::PantallaCreditos() const{
+    
+}
     
     
     /* EL HARD:*/

@@ -47,7 +47,7 @@ DataBase::~DataBase() {
 Artefacto *DataBase::devuelve_artefacto(int* niveles){
     int min,max;
     this->rangoNiveles(niveles,min,max);
-    int nivelRandom =rand()%(max-min);
+    int nivelRandom =rand()%(max-min)+1;
     int opcion =rand()%3;
     if(opcion==0){ //Es una armadura
         int size=this->armaduras.size();
@@ -123,7 +123,7 @@ void DataBase::SetArmaduras(char* buffLinea){
      min=12;max=-1;
      for(int i=0;i<NUMFILE;i++){
          if(niveles[i]<min) min=niveles[i];
-         else if(niveles[i]>max) max=niveles[i];
+         if(niveles[i]>max) max=niveles[i];
      }
      min+=1; max+=1;
  }
