@@ -62,14 +62,14 @@ void Laberinto::SetMatriz(ifstream &arch) {
             if (c == 'F') this->matriz[i][j].SetTipo(4);
             if (c == ' '){
                 this->matriz[i][j].SetTipo(0); // Valor inicial
-                double valor = fRand(0,1);
-                if (this->pctMonstruo > valor) 
-                    this->matriz[i][j].SetTipo(6);
-                else{
-                    valor = fRand(0,1);
-                    if (this->pctArtefacto > valor) 
-                        this->matriz[i][j].SetTipo(5);                
-                }                  
+//                double valor = fRand(0,1);
+//                if (this->pctMonstruo > valor) 
+//                    this->matriz[i][j].SetTipo(6);
+//                else{
+//                    valor = fRand(0,1);
+//                    if (this->pctArtefacto > valor) 
+//                        this->matriz[i][j].SetTipo(5);                
+//                }                  
             }
         }
         arch.get(c);

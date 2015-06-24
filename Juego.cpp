@@ -65,18 +65,26 @@ Juego::Juego() {
                 if(c=='N' || c=='n') break; // termino el juego    
             }
             else{
-                if(r==0)// El jugador decidio salir del juego
+                if(r==0){// El jugador decidio salir del juego
                     this->PantallaAbandono(graf);
-                else // El jugador ha ganado
-                    this->PantallaFinal(graf);        
+                    Sleep(2000);
+                    exit(1);
+                }
+                else{ // El jugador ha ganado
+                    this->PantallaFinal(graf);
+                    Sleep(2000);
+                    exit(1);
+                }
             }
         }
         else if(modo==2){// Cargar un juego guardado
             int r=this->Cargar();
-            if(r==1) // El jugador decidio salir del juego
+            if(r==1){ // El jugador decidio salir del juego
                 this->PantallaAbandono(graf);
-            else
+            }
+            else{
                 this->PantallaFinal(graf);
+            }
         }
         else if(modo==3) // creditos
             this->Creditos(graf);
@@ -116,7 +124,7 @@ void Juego::console_clear(int x,int y,int dx,int dy,char clearwith)const{
 string* Juego::nombres_archivos()const{
     string *nombreArchivo = new string[NUMFILE];
     for(int i=0;i<NUMFILE;i++){
-        string buffer="escenario";
+        string buffer="escenarios\\escenario";
         char c[10];
         itoa(i,c,10);
         buffer=buffer+c+".txt";
